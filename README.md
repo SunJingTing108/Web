@@ -1,2 +1,2 @@
-# Web
-前端项目
+# PointServer
+积分系统的服务器端
