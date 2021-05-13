@@ -7,7 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
-
 var app = express();
 let router = express.Router();
 let db = require('./model/db'); 
@@ -58,6 +57,7 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//注册接口
 app.use('/register',registerRouter)
 
 //插入测试
@@ -69,7 +69,7 @@ app.get('/dbtest',function(req, res){
         console.log('inserted id is:' + id);
     });
     db.close(connection);
-	res.send(JSON.stringify(project))
+ res.send(JSON.stringify(project))
     return;
 });
 
