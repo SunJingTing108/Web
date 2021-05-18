@@ -31,6 +31,7 @@ router.post('/', function(req, res, next) {
     console.log(res)
   })
   db.close(conn)
+  res.send("注册完成")
 });
 
 
