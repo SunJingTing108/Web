@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
+
 var app = express();
 let router = express.Router();
 let db = require('./model/db'); 
@@ -31,9 +33,6 @@ Date.prototype.format = function(format)
  return format;
 }
 
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -43,6 +42,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({
+  extended:true
+}))
 
 // app.all('*', function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -90,7 +92,7 @@ app.get('/dbtest',function(req, res){
         console.log('inserted id is:' + id);
     });
     db.close(connection);
- res.send(JSON.stringify(project))
+	res.send(JSON.stringify(project))
     return;
 });
 
